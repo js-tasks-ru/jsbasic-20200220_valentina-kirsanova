@@ -5,18 +5,9 @@
  * @returns {string}
  */
 function showSalary(data, age) {
-  let result = [];
-
-  data.forEach((employer) => {
-    if (employer.age <= age) {
-      const {
-        name,
-        balance
-      } = employer;
-
-      result.push(`${name}, ${balance}`);
-    }
-  });
+  const result = data
+    .filter(employer => employer.age <= age)
+    .map(employer => `${employer.name}, ${employer.age}`);
 
   return result.join("\n");
 }
