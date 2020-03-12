@@ -7,7 +7,7 @@
 function showSalary(data, age) {
   let result = data
     .filter(employer => employer.age <= age)
-    .map(employer => `${employer.name}, ${employer.age}`);
+    .map(employer => `${employer.name}, ${employer.balance}`);
 
   return result.join("\n");
 }
