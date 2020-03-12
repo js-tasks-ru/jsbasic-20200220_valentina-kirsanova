@@ -5,7 +5,7 @@
  * @returns {string}
  */
 function showSalary(data, age) {
-  const result = data
+  let result = data
     .filter(employer => employer.age <= age)
     .map(employer => `${employer.name}, ${employer.age}`);
 
