@@ -7,7 +7,7 @@ function getMinMax(str) {
   const numbers = str.split(',')
     .join(' ')
     .split(' ')
-    .filter((item) => isNaN(item));
+    .filter((item) => !isNaN(item));
 
   return ({
     min: Math.min(...numbers),
