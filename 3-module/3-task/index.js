@@ -4,7 +4,6 @@
  */
 function camelize(str) {
   const parts = str.split('-')
-    .filter((item) => item.length)
     .map((item, idx) => {
       if (idx === 0) {
         return item;
