@@ -1,11 +1,6 @@
 /**
  * Метод устанавливает необходимые по условию аттрибуты таблице
  * @param {Element} table
- *
- * Проставит класс available/unavailable, в зависимости от значения атрибута data-available у ячейки Status
- Проставит атрибут hidden, если такого атрибута нет вообще
- Проставит класс male/female, в зависимости от содержимого ячейки Gender
- Установит inline-стиль style=«text-decoration: line-through», если значение ячейки Age меньше 18
  */
 function highlight(table) {
   const AVAILABLE_CLASSES = {
