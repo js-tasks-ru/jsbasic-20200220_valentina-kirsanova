@@ -1,40 +1,45 @@
+const FIRST_COLUMN = 1;
+const SECOND_COLUMN = 2;
+const THIRD_COLUMN = 3;
+
 /**
  * Метод устанавливает необходимые по условию аттрибуты таблице
  * @param {Element} table
  */
 function highlight(table) {
-  const AVAILABLE_CLASSES = {
-    'false': 'unavailable',
-    'true': 'available'
-  };
-  const GENDERS = {
-    m: 'male',
-    f: 'female'
-  };
-  const rows = table.rows;
-
-  for (const key in rows) {
-    const row = rows[key];
-    const cells = row.cells;
-
-    if (cells) {
-      const is_available = String(cells[3].dataset.available);
-      const gender = cells[2].textContent;
-      const less_18 = +cells[1].textContent < 18;
-
-      if (is_available === 'undefined') {
-        row.setAttribute('hidden', 'true');
-      } else {
-        row.classList.add(AVAILABLE_CLASSES[is_available]);
+  const actions = {
+    [THIRD_COLUMN]: (root, td) => {
+      if (td.dataset.available === 'true') {
+        root.classList.toggle('available', true);
+      } else if (td.dataset.available === 'false') {
+        root.classList.toggle('unavailable', true);
+      } else if (!td.hasAttribute('data-available')) {
+        root.hidden = true;
       }
-
-      row.classList.add(GENDERS[gender]);
-
-      if (less_18) {
-        row.setAttribute('style', 'text-decoration: line-through;');
+    },
+    [SECOND_COLUMN]: (root, td) => {
+      if (td.textContent === 'm') {
+        root.classList.toggle('male', true);
+      } else if (td.textContent === 'f') {
+        root.classList.toggle('female', true);
       }
-    }
+    },
+    [FIRST_COLUMN]: (root, td) => {
+      const age = parseInt(td.textContent, 10);
 
+      if (age < 18) {
+        root.style.textDecoration = 'line-through';
+      }
+    },
+  };
+
+  for (const tr of table.rows) {
+    Array.from(tr.cells).forEach((td, index) => {
+      const fn = actions[index];
+
+      if (typeof fn === 'function') {
+        fn(tr, td);
+      }
+    });
   }
-
 }
