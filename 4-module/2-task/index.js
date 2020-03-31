@@ -15,13 +15,4 @@ function makeDiagonalRed(table) {
       }
     }
   }
-  // const diagonalCells = rows.map((row) => {
-  //   const cells = Array.from(row.cells);
-  //   const rowID = row
-  //   return cells.filter((cell) => cell.cellIndex === rowID);
-  // });
-  //
-  // diagonalCells.forEach((cell) => {
-  //   cell.setAttribute('style', 'background-color: red;');
-  // });
 }
